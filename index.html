@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Familie">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1B6B57">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Familienboard</title>
 <style>
 :root {
@@ -376,7 +382,8 @@ function readToken() {
   let stored = null;
   try { stored = localStorage.getItem(TOKEN_KEY); } catch (e) {}
   if (z) {
-    try { localStorage.setItem(TOKEN_KEY, z); history.replaceState(null, "", location.pathname + location.hash); } catch (e) { /* Token bleibt dann in der Adresse */ }
+    try { localStorage.setItem(TOKEN_KEY, z); } catch (e) { /* Token bleibt in der Adresse */ }
+    /* Token bewusst in der Adresse lassen: "Zum Home-Bildschirm" auf dem iPhone merkt sich nur die Adresse; die App vom Home-Bildschirm hat einen eigenen Speicher und sähe sonst keinen Zugangslink. */
     return z;
   }
   return stored;
